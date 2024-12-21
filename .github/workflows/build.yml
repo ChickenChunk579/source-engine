@@ -21,6 +21,21 @@ jobs:
       run: |
         scripts/build-ubuntu-amd64.sh
 
+  build-ios-arm64:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build ios-arm64
+      run: |
+        ./waf configure --cross-compile-ios --lightweight= --fft=ACCELERATE
+        ./waf build
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: "ios"
+        path: .
+
   build-android-armv7a:
     runs-on: ubuntu-20.04
 
