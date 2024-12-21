@@ -29,7 +29,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build ios-arm64
       run: |
-        ./waf configure --cross-compile-ios
+        ./waf configure --cross-compile-ios -T release --disable-warns
         ./waf build
     - name: Upload artifact
       uses: actions/upload-artifact@v4
